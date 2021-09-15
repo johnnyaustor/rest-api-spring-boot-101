@@ -41,6 +41,8 @@ $ mvn spring-boot:run
 ## Properties
 ```properties
 spring.datasource.url=jdbc:h2:mem:data
+# or
+# spring.datasource.url=jdbc:h2:file:./data/data
 spring.datasource.username=sa
 spring.datasource.password=password
 spring.h2.console.enabled=true
