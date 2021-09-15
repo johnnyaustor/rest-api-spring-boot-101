@@ -51,5 +51,16 @@ public class UserController {
 
         return ResponseEntity.ok(currentUser);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+        Optional<User> currentUser = repository.findById(id);
+        if (currentUser.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
 
