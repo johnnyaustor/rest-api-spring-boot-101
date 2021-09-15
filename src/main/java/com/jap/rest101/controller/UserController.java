@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -25,6 +26,14 @@ public class UserController {
     public ResponseEntity<List<User>> listUser() {
         List<User> users = repository.findAll();
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable("id") Long id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(user);
     }
 }
 
