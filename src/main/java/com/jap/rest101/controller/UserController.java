@@ -35,5 +35,21 @@ public class UserController {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(user);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+        Optional<User> currentUser = repository.findById(id);
+        if (currentUser.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        User u = currentUser.get();
+        u.setFirstName(user.getFirstName());
+        u.setLastName(user.getLastName());
+        u.setEmail(user.getEmail());
+        u.setPhone(user.getPhone());
+        repository.save(u);
+
+        return ResponseEntity.ok(currentUser);
+    }
 }
 
