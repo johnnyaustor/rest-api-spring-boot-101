@@ -38,3 +38,10 @@ $ mvn spring-boot:run
 - 104Patch Init Update Data
 - 105Delete Init Delete Data
 
+## Properties
+```properties
+spring.datasource.url=jdbc:h2:mem:data
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.h2.console.enabled=true
+```
